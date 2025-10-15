@@ -27,7 +27,18 @@ const severityLabels = {
 
 const AuditResults = ({ results, inputs }: AuditResultsProps) => {
   const handleDownloadPDF = () => {
+    // Set a descriptive filename by temporarily changing document title
+    const originalTitle = document.title;
+    const date = new Date().toISOString().split('T')[0];
+    document.title = `Revenue-Leakage-Report-${date}`;
+    
+    // Trigger print dialog
     window.print();
+    
+    // Restore original title after print dialog closes
+    setTimeout(() => {
+      document.title = originalTitle;
+    }, 100);
   };
 
   const currentVsOptimized = [

@@ -72,11 +72,22 @@ All colors MUST be HSL.
     color: black !important;
   }
 
+  /* Hide everything except the results section */
+  body > * {
+    display: none !important;
+  }
+
+  /* Only show the results section */
+  #results {
+    display: block !important;
+  }
+
   /* Hide elements not needed in PDF */
   .no-print,
   .fixed,
   footer,
-  nav {
+  nav,
+  header {
     display: none !important;
   }
 
