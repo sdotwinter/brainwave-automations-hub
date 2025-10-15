@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from "recharts";
 import CountUp from "react-countup";
-import { AlertTriangle, CheckCircle2, Calendar, TrendingUp } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Calendar, TrendingUp, Download } from "lucide-react";
 import { AuditResults as Results, formatCurrency, formatNumber } from "@/lib/auditCalculations";
 
 interface AuditResultsProps {
@@ -26,6 +26,10 @@ const severityLabels = {
 };
 
 const AuditResults = ({ results, inputs }: AuditResultsProps) => {
+  const handleDownloadPDF = () => {
+    window.print();
+  };
+
   const currentVsOptimized = [
     {
       name: 'Current',
@@ -47,6 +51,18 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
   return (
     <section className="py-12 px-4 bg-gradient-to-b from-card to-background">
       <div className="container mx-auto max-w-6xl space-y-8">
+        {/* Download PDF Button */}
+        <div className="flex justify-end no-print">
+          <Button
+            onClick={handleDownloadPDF}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Download Report as PDF
+          </Button>
+        </div>
+
         {/* Severity Alert */}
         <Card className="p-6 border-2 bg-card/50 backdrop-blur" style={{ borderColor: severityColors[results.severityLevel] }}>
           <div className="flex items-start gap-4">
