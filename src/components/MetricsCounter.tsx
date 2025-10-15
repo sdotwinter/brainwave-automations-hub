@@ -38,7 +38,7 @@ const MetricsCounter = () => {
   }, [inView, hasAnimated]);
 
   return (
-    <section ref={ref} className="py-20 px-4 bg-gradient-to-b from-card to-background relative overflow-hidden">
+    <section id="metrics" ref={ref} className="py-20 px-4 bg-gradient-to-b from-card to-background relative overflow-hidden">
       {/* Animated background grid */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
