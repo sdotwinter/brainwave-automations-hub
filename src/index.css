@@ -72,32 +72,31 @@ All colors MUST be HSL.
     color: black !important;
   }
 
+  /* Hide everything except the printable report */
+  body * {
+    visibility: hidden;
+  }
+
+  #printable-report,
+  #printable-report * {
+    visibility: visible;
+  }
+
+  #printable-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
   /* Hide elements not needed in PDF */
-  .no-print,
-  .fixed,
-  footer,
-  nav,
-  header {
+  .no-print {
     display: none !important;
   }
 
   /* Hide particle background and other decorative elements */
   canvas {
     display: none !important;
-  }
-
-  /* Hide hero section and calculator in print */
-  main > *:not(#results) {
-    display: none !important;
-  }
-
-  /* Ensure results section is visible */
-  #results {
-    display: block !important;
-  }
-
-  #results > * {
-    display: block !important;
   }
 
   /* Hide particle background and other decorative elements */

@@ -74,6 +74,8 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
           </Button>
         </div>
 
+        {/* Report Content - Only this section will be printed */}
+        <div id="printable-report">
         {/* Severity Alert */}
         <Card className="p-6 border-2 bg-card/50 backdrop-blur" style={{ borderColor: severityColors[results.severityLevel] }}>
           <div className="flex items-start gap-4">
@@ -175,13 +177,21 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
                     outerRadius={90}
                     paddingAngle={5}
                     dataKey="value"
+                    label={(entry) => `${entry.name}: ${formatCurrency(entry.value)}`}
+                    labelLine={true}
                   >
                     {recoveryData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.fill} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(value: number) => formatCurrency(value)} />
-                  <Legend />
+                  <Tooltip 
+                    formatter={(value: number) => formatCurrency(value)}
+                    contentStyle={{ 
+                      backgroundColor: 'hsl(var(--card))', 
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px'
+                    }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
               <p className="text-center text-muted-foreground mt-4">
@@ -209,6 +219,8 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
             ))}
           </div>
         </Card>
+        </div>
+        {/* End of printable report content */}
 
         {/* Download PDF Button */}
         <div className="flex justify-center no-print">
@@ -224,7 +236,7 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
         </div>
 
         {/* CTA */}
-        <Card className="p-8 md:p-12 text-center bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20">
+        <Card className="p-8 md:p-12 text-center bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 no-print">
           <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Ready to Stop Losing Revenue?
           </h3>
