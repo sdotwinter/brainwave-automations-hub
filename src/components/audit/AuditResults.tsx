@@ -193,12 +193,12 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
           </p>
           <Button
             size="lg"
-            className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300"
+            className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300 w-full md:w-auto"
             asChild
           >
-            <a href="https://calendly.com/sean-winter/ai-automations-audit" target="_blank" rel="noopener noreferrer">
-              <Calendar className="w-5 h-5 mr-2" />
-              Book Your Free Audit Now
+            <a href="https://calendly.com/sean-winter/ai-automations-audit" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <Calendar className="w-5 h-5" />
+              <span>Book Your Free Audit Now</span>
             </a>
           </Button>
           <p className="text-sm text-muted-foreground mt-4">No commitment. No sales pitch. Just actionable insights.</p>
