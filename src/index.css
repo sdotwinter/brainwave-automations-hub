@@ -102,7 +102,12 @@ All colors MUST be HSL.
   /* Hide chart labels and decorative elements in print */
   .recharts-label,
   .recharts-layer.recharts-active-dot,
-  .recharts-dot {
+  .recharts-dot,
+  .recharts-text.recharts-label,
+  .recharts-label-list,
+  .recharts-bar-label,
+  .recharts-pie-label-text,
+  .recharts-pie-label-line {
     display: none !important;
   }
 
