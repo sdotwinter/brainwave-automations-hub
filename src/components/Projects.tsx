@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Rocket, TrendingUp, CreditCard, Workflow, Coffee, Brain, ChevronDown, Calculator, ExternalLink } from "lucide-react";
+import { Rocket, TrendingUp, CreditCard, Workflow, Brain, ChevronDown, Calculator, ExternalLink } from "lucide-react";
 
 const projects = [
   {
@@ -51,15 +51,6 @@ const projects = [
     problem: "Manual return processing and store credit issuance created delays and customer frustration.",
     solution: "Built Shopify app with webhook automation for return detection, credit calculation, and customer notifications via Supabase.",
     results: ["Reduced return processing time by 85%", "Eliminated manual credit entry errors", "Improved customer satisfaction scores by 40%"],
-  },
-  {
-    icon: Coffee,
-    title: "Custom HitPay Payment Plugin",
-    description: "WordPress plugin handling complex payment redirects and callbacks",
-    tech: ["WordPress", "HitPay API", "PHP"],
-    problem: "Standard payment plugins couldn't handle tourism booking requirements with variable pricing and date-based inventory.",
-    solution: "Developed custom WordPress plugin integrating HitPay API with dynamic pricing rules and booking confirmation flows.",
-    results: ["Enabled online bookings 24/7", "Increased booking conversion rate by 35%", "Automated payment reconciliation saving 5 hours/week"],
   },
   {
     icon: Rocket,
