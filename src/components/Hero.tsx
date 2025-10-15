@@ -74,13 +74,13 @@ const Hero = () => {
               &lt;/developer&gt;
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-primary rounded-full" />
+          {/* Scroll indicator */}
+          <div className="pt-8 flex justify-center animate-bounce">
+            <div className="w-6 h-10 border-2 border-primary rounded-full flex items-start justify-center p-2">
+              <div className="w-1 h-2 bg-primary rounded-full" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
