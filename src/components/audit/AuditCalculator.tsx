@@ -145,7 +145,7 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
                     id="leadsPerMonth"
                     type="number"
                     min="1"
-                    value={inputs.leadsPerMonth}
+                    value={inputs.leadsPerMonth || ""}
                     onChange={(e) => setInputs(prev => ({ ...prev, leadsPerMonth: parseInt(e.target.value) || 0 }))}
                     placeholder="e.g., 50"
                   />
@@ -163,7 +163,7 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
                     id="customerValue"
                     type="number"
                     min="1"
-                    value={inputs.averageCustomerValue}
+                    value={inputs.averageCustomerValue || ""}
                     onChange={(e) => setInputs(prev => ({ ...prev, averageCustomerValue: parseInt(e.target.value) || 0 }))}
                     placeholder="e.g., 2000"
                   />
