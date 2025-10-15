@@ -13,7 +13,7 @@ const projects = [
     problem:
       "Law firms couldn't visualize the actual dollar impact of losing leads between marketing and intake systems.",
     solution:
-      "Built interactive calculator with real-time projections showing monthly and annual revenue loss based on lead volume, conversion rates, and case values.",
+      "Built interactive calculator with real-time projections showing monthly revenue loss based on lead volume, conversion rates, and case values.",
     results: [
       "Live tool generating qualified leads",
       "Converts 15% of visitors to consultations",
