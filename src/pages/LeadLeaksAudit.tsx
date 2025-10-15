@@ -52,7 +52,7 @@ const LeadLeaksAudit = () => {
         <AuditCalculator onCalculate={handleCalculate} />
       ) : (
         <div id="results">
-          <AuditResults results={results} inputs={{ industry: inputs!.industry, monthlyMarketingSpend: inputs!.monthlyMarketingSpend }} />
+          <AuditResults results={results} inputs={{ monthlyMarketingSpend: inputs!.monthlyMarketingSpend }} />
           
           {/* Recalculate Button */}
           <div className="py-12 px-4 text-center">

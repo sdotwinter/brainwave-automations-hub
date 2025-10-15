@@ -1,5 +1,4 @@
 export interface AuditInputs {
-  industry: string;
   monthlyMarketingSpend: number;
   leadsPerMonth: number;
   followUpMissedPercent: number;
@@ -42,9 +41,9 @@ export function calculateAuditResults(inputs: AuditInputs): AuditResults {
   const severityScore = calculateSeverityScore(inputs, revenueLostMonthly);
   const severityLevel = getSeverityLevel(severityScore);
   
-  // Get industry-specific recovery rate
-  const industryData = industryDefaults[inputs.industry as keyof typeof industryDefaults] || industryDefaults.Other;
-  const potentialRecoveryPercent = inputs.hasCRM ? industryData.recoveryRate : industryData.recoveryRate - 15;
+  // Use default recovery rate (no longer industry-specific)
+  const baseRecoveryRate = 70;
+  const potentialRecoveryPercent = inputs.hasCRM ? baseRecoveryRate : baseRecoveryRate - 15;
   
   // Generate personalized recommendations
   const recommendations = generateRecommendations(inputs, severityScore);
@@ -122,8 +121,8 @@ function generateRecommendations(inputs: AuditInputs, severityScore: number): st
     recommendations.push('Set up real-time notifications (SMS/Slack) when high-priority leads come in');
   }
   
-  // Industry-specific recommendations
-  if (inputs.industry === 'Law Firm' || inputs.industry === 'Real Estate') {
+  // After-hours lead capture recommendation
+  if (inputs.leadsPerMonth > 30) {
     recommendations.push('Enable after-hours lead capture with automated intake forms and instant acknowledgment');
   }
   

@@ -8,7 +8,7 @@ import { AuditResults as Results, formatCurrency, formatNumber } from "@/lib/aud
 
 interface AuditResultsProps {
   results: Results;
-  inputs: { industry: string; monthlyMarketingSpend: number };
+  inputs: { monthlyMarketingSpend: number };
 }
 
 const severityColors = {

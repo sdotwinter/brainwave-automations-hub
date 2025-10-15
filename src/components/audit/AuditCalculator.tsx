@@ -5,9 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, AlertCircle } from "lucide-react";
-import { AuditInputs, industryDefaults } from "@/lib/auditCalculations";
+import { AuditInputs } from "@/lib/auditCalculations";
 
 interface AuditCalculatorProps {
   onCalculate: (inputs: AuditInputs) => void;
@@ -24,7 +23,6 @@ const leadSourceOptions = [
 
 const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
   const [inputs, setInputs] = useState<AuditInputs>({
-    industry: "Other",
     monthlyMarketingSpend: 5000,
     leadsPerMonth: 50,
     followUpMissedPercent: 20,
@@ -35,15 +33,6 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  const handleIndustryChange = (value: string) => {
-    const industryData = industryDefaults[value as keyof typeof industryDefaults] || industryDefaults.Other;
-    setInputs(prev => ({
-      ...prev,
-      industry: value,
-      averageCustomerValue: industryData.avgValue
-    }));
-  };
 
   const handleLeadSourceToggle = (source: string) => {
     setInputs(prev => ({
@@ -94,38 +83,20 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
                 <h3 className="text-xl font-semibold text-foreground">Business Information</h3>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="industry">Industry</Label>
-                  <Select value={inputs.industry} onValueChange={handleIndustryChange}>
-                    <SelectTrigger id="industry">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Object.keys(industryDefaults).map(industry => (
-                        <SelectItem key={industry} value={industry}>
-                          {industry}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="marketingSpend">
-                    Monthly Marketing Spend: ${inputs.monthlyMarketingSpend.toLocaleString()}
-                  </Label>
-                  <Slider
-                    id="marketingSpend"
-                    min={0}
-                    max={50000}
-                    step={500}
-                    value={[inputs.monthlyMarketingSpend]}
-                    onValueChange={([value]) => setInputs(prev => ({ ...prev, monthlyMarketingSpend: value }))}
-                    className="pt-2"
-                  />
-                  <p className="text-xs text-muted-foreground">Move slider to adjust</p>
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="marketingSpend">
+                  Monthly Marketing Spend: ${inputs.monthlyMarketingSpend.toLocaleString()}
+                </Label>
+                <Slider
+                  id="marketingSpend"
+                  min={0}
+                  max={50000}
+                  step={500}
+                  value={[inputs.monthlyMarketingSpend]}
+                  onValueChange={([value]) => setInputs(prev => ({ ...prev, monthlyMarketingSpend: value }))}
+                  className="pt-2"
+                />
+                <p className="text-xs text-muted-foreground">Move slider to adjust</p>
               </div>
             </div>
 
@@ -173,7 +144,6 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
                       {errors.averageCustomerValue}
                     </p>
                   )}
-                  <p className="text-xs text-muted-foreground">Typical value: ${industryDefaults[inputs.industry as keyof typeof industryDefaults]?.avgValue.toLocaleString()}</p>
                 </div>
               </div>
 
