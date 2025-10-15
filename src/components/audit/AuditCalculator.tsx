@@ -27,6 +27,7 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
     leadsPerMonth: 50,
     followUpMissedPercent: 20,
     averageCustomerValue: 2000,
+    conversionRate: 25,
     leadSources: ["Web forms"],
     hasCRM: false,
     crmName: ""
@@ -90,7 +91,7 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
                 <Slider
                   id="marketingSpend"
                   min={0}
-                  max={50000}
+                  max={100000}
                   step={500}
                   value={[inputs.monthlyMarketingSpend]}
                   onValueChange={([value]) => setInputs(prev => ({ ...prev, monthlyMarketingSpend: value }))}
@@ -161,6 +162,22 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
                   className="pt-2"
                 />
                 <p className="text-xs text-muted-foreground">Industry average: 20-30%</p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="conversionRate">
+                  Expected Conversion Rate: {inputs.conversionRate}%
+                </Label>
+                <Slider
+                  id="conversionRate"
+                  min={5}
+                  max={50}
+                  step={1}
+                  value={[inputs.conversionRate]}
+                  onValueChange={([value]) => setInputs(prev => ({ ...prev, conversionRate: value }))}
+                  className="pt-2"
+                />
+                <p className="text-xs text-muted-foreground">What % of properly followed-up leads typically convert?</p>
               </div>
             </div>
 

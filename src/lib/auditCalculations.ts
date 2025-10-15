@@ -3,6 +3,7 @@ export interface AuditInputs {
   leadsPerMonth: number;
   followUpMissedPercent: number;
   averageCustomerValue: number;
+  conversionRate: number;
   leadSources: string[];
   hasCRM: boolean;
   crmName?: string;
@@ -30,7 +31,7 @@ export const industryDefaults = {
 
 export function calculateAuditResults(inputs: AuditInputs): AuditResults {
   const leadsLostMonthly = Math.round((inputs.leadsPerMonth * inputs.followUpMissedPercent) / 100);
-  const revenueLostMonthly = Math.round(leadsLostMonthly * inputs.averageCustomerValue * 0.25); // Assuming 25% conversion rate on followed-up leads
+  const revenueLostMonthly = Math.round(leadsLostMonthly * inputs.averageCustomerValue * (inputs.conversionRate / 100));
   const revenueLostAnnually = revenueLostMonthly * 12;
   
   // Calculate ROI of fixing (assuming automation costs 10-15% of recovered revenue)
