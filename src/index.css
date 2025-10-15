@@ -72,16 +72,6 @@ All colors MUST be HSL.
     color: black !important;
   }
 
-  /* Hide everything except the results section */
-  body > * {
-    display: none !important;
-  }
-
-  /* Only show the results section */
-  #results {
-    display: block !important;
-  }
-
   /* Hide elements not needed in PDF */
   .no-print,
   .fixed,
@@ -89,6 +79,25 @@ All colors MUST be HSL.
   nav,
   header {
     display: none !important;
+  }
+
+  /* Hide particle background and other decorative elements */
+  canvas {
+    display: none !important;
+  }
+
+  /* Hide hero section and calculator in print */
+  main > *:not(#results) {
+    display: none !important;
+  }
+
+  /* Ensure results section is visible */
+  #results {
+    display: block !important;
+  }
+
+  #results > * {
+    display: block !important;
   }
 
   /* Hide particle background and other decorative elements */
