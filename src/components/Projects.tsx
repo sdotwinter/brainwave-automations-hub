@@ -1,9 +1,21 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { Rocket, TrendingUp, CreditCard, Workflow, Coffee, Brain, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Rocket, TrendingUp, CreditCard, Workflow, Coffee, Brain, ChevronDown, Calculator, ExternalLink } from "lucide-react";
 
 const projects = [
+  {
+    icon: Calculator,
+    title: "Missed Revenue Calculator",
+    description: "Interactive tool helping law firms quantify lost revenue from lead leakage",
+    tech: ["Lovable.dev", "React", "TypeScript"],
+    problem: "Law firms couldn't visualize the actual dollar impact of losing leads between marketing and intake systems.",
+    solution: "Built interactive calculator with real-time projections showing monthly and annual revenue loss based on lead volume, conversion rates, and case values.",
+    results: ["Live tool generating qualified leads", "Converts 15% of visitors to consultations", "Demonstrates ROI of automation investments"],
+    isLiveTool: true,
+    liveUrl: "https://seanwinter.pro/missed-revenue/",
+  },
   {
     icon: Brain,
     title: "AI Intake Leak Finder",
@@ -99,8 +111,13 @@ const Projects = () => {
                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                           <Icon className="w-6 h-6 text-primary" />
                         </div>
-                        <div className="flex-1">
+                        <div className="flex-1 flex items-center gap-2 flex-wrap">
                           <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
+                          {project.isLiveTool && (
+                            <span className="text-xs px-2 py-1 rounded-full bg-primary/20 text-primary border border-primary/50 font-semibold animate-pulse">
+                              LIVE TOOL
+                            </span>
+                          )}
                         </div>
                       </div>
                       
@@ -164,6 +181,20 @@ const Projects = () => {
                             </ul>
                           </div>
                         </div>
+                        
+                        {project.isLiveTool && project.liveUrl && (
+                          <div className="mt-6 pt-6 border-t border-border">
+                            <Button 
+                              className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-glow"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+                              }}
+                            >
+                              Try Calculator Now <ExternalLink className="w-4 h-4 ml-2" />
+                            </Button>
+                          </div>
+                        )}
                       </motion.div>
                     )}
                   </AnimatePresence>

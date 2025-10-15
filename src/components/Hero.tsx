@@ -49,13 +49,23 @@ const Hero = () => {
             </a>
           </div>
 
-          <div className="pt-8">
+          <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               size="lg"
               className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300"
               asChild
             >
               <a href="#contact">Get in Touch</a>
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="border-primary/50 hover:bg-primary/10"
+              asChild
+            >
+              <a href="https://seanwinter.pro/missed-revenue/" target="_blank" rel="noopener noreferrer">
+                Try My Revenue Calculator →
+              </a>
             </Button>
           </div>
 
