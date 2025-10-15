@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, MapPin } from "lucide-react";
+import { Phone, Linkedin, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -26,7 +26,7 @@ const Contact = () => {
                 asChild
               >
                 <a href="https://calendly.com/sean-winter/ai-automations-audit" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <Mail className="w-5 h-5" />
+                  <Phone className="w-5 h-5" />
                   Book Free Audit
                 </a>
               </Button>
