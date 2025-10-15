@@ -156,7 +156,7 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
                     }}
                     formatter={(value: number) => formatCurrency(value)}
                   />
-                  <Bar dataKey="revenue" radius={[8, 8, 0, 0]}>
+                  <Bar dataKey="revenue" radius={[8, 8, 0, 0]} label={false}>
                     {currentVsOptimized.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.fill} />
                     ))}

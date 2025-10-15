@@ -99,9 +99,16 @@ All colors MUST be HSL.
     display: none !important;
   }
 
-  /* Hide particle background and other decorative elements */
-  canvas {
+  /* Hide chart labels and decorative elements in print */
+  .recharts-label,
+  .recharts-layer.recharts-active-dot,
+  .recharts-dot {
     display: none !important;
+  }
+
+  /* Hide pie chart center dot */
+  .recharts-pie-sector path[stroke] {
+    stroke: none !important;
   }
 
   /* Force desktop grid layouts */
