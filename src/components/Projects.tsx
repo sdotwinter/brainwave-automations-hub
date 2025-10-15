@@ -2,7 +2,17 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Rocket, TrendingUp, CreditCard, Workflow, Brain, ChevronDown, Calculator, ExternalLink, AlertTriangle } from "lucide-react";
+import {
+  Rocket,
+  TrendingUp,
+  CreditCard,
+  Workflow,
+  Brain,
+  ChevronDown,
+  Calculator,
+  ExternalLink,
+  AlertTriangle,
+} from "lucide-react";
 
 const projects = [
   {
@@ -28,7 +38,7 @@ const projects = [
     description: "Comprehensive diagnostic tool revealing hidden revenue gaps in lead management systems",
     tech: ["React", "TypeScript", "Framer Motion"],
     problem:
-      "Law firms struggled to identify where leads were falling through the cracks across their entire marketing-to-intake pipeline.",
+      "Businesses struggled to identify where leads were falling through the cracks across their entire marketing-to-intake pipeline.",
     solution:
       "Created interactive audit system analyzing lead flow across 8 critical touchpoints, calculating exact revenue impact of each leak, and providing prioritized action plans with ROI projections.",
     results: [
