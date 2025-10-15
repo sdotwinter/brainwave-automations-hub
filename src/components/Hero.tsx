@@ -55,7 +55,9 @@ const Hero = () => {
               className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300"
               asChild
             >
-              <a href="#contact">Get in Touch</a>
+              <a href="https://calendly.com/sean-winter/ai-automations-audit" target="_blank" rel="noopener noreferrer">
+                Book Free Audit
+              </a>
             </Button>
             <Button 
               size="lg"
@@ -63,8 +65,8 @@ const Hero = () => {
               className="border-primary/50 hover:bg-primary/10"
               asChild
             >
-              <a href="https://seanwinter.pro/missed-revenue/" target="_blank" rel="noopener noreferrer">
-                Try My Revenue Calculator →
+              <a href="/lead-leaks-audit">
+                Calculate Your Lead Leaks →
               </a>
             </Button>
           </div>
