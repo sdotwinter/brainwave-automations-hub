@@ -5,7 +5,6 @@ import AuditHero from "@/components/audit/AuditHero";
 import AuditCalculator from "@/components/audit/AuditCalculator";
 import AuditResults from "@/components/audit/AuditResults";
 import ParticleBackground from "@/components/ParticleBackground";
-import SmoothScroll from "@/components/SmoothScroll";
 import { AuditInputs, AuditResults as Results, calculateAuditResults } from "@/lib/auditCalculations";
 
 const LeadLeaksAudit = () => {
@@ -32,7 +31,6 @@ const LeadLeaksAudit = () => {
   return (
     <main className="min-h-screen relative bg-background">
       <ParticleBackground />
-      <SmoothScroll />
       
       {/* Back to Home Button */}
       <div className="fixed top-6 left-6 z-50">
