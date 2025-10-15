@@ -9,10 +9,16 @@ const projects = [
     icon: Calculator,
     title: "Missed Revenue Calculator",
     description: "Interactive tool helping law firms quantify lost revenue from lead leakage",
-    tech: ["Lovable.dev", "React", "TypeScript"],
-    problem: "Law firms couldn't visualize the actual dollar impact of losing leads between marketing and intake systems.",
-    solution: "Built interactive calculator with real-time projections showing monthly and annual revenue loss based on lead volume, conversion rates, and case values.",
-    results: ["Live tool generating qualified leads", "Converts 15% of visitors to consultations", "Demonstrates ROI of automation investments"],
+    tech: ["React", "TypeScript"],
+    problem:
+      "Law firms couldn't visualize the actual dollar impact of losing leads between marketing and intake systems.",
+    solution:
+      "Built interactive calculator with real-time projections showing monthly and annual revenue loss based on lead volume, conversion rates, and case values.",
+    results: [
+      "Live tool generating qualified leads",
+      "Converts 15% of visitors to consultations",
+      "Demonstrates ROI of automation investments",
+    ],
     isLiveTool: true,
     liveUrl: "https://seanwinter.pro/missed-revenue/",
   },
@@ -22,8 +28,13 @@ const projects = [
     description: "Detects missed leads in real time",
     tech: ["Make.com", "GoHighLevel", "Meta API"],
     problem: "Law firms were losing 20-30% of leads due to broken handoffs between Meta Ads, forms, and CRM systems.",
-    solution: "Built Make.com workflow with duplicate detection, form matching, and real-time Slack alerts for anomalies.",
-    results: ["Reduced lead loss from 25% to under 3%", "Recovered $50K+ in lost opportunities in first month", "Automated QA catching issues within 5 minutes"],
+    solution:
+      "Built Make.com workflow with duplicate detection, form matching, and real-time Slack alerts for anomalies.",
+    results: [
+      "Reduced lead loss from 25% to under 3%",
+      "Recovered $50K+ in lost opportunities in first month",
+      "Automated QA catching issues within 5 minutes",
+    ],
   },
   {
     icon: TrendingUp,
@@ -31,17 +42,28 @@ const projects = [
     description: "Automated audit system generating dashboards and reports",
     tech: ["Make.com", "Looker Studio", "GPT API"],
     problem: "Manual audits took 8+ hours per client and lacked consistency across different marketing channels.",
-    solution: "Created automated pipeline pulling data from GA4, Meta, Google Ads, and Search Console. GPT analyzes patterns and generates insights.",
-    results: ["Cut audit time from 8 hours to 45 minutes", "Increased audit capacity by 10x", "Standardized reporting across 30+ clients"],
+    solution:
+      "Created automated pipeline pulling data from GA4, Meta, Google Ads, and Search Console. GPT analyzes patterns and generates insights.",
+    results: [
+      "Cut audit time from 8 hours to 45 minutes",
+      "Increased audit capacity by 10x",
+      "Standardized reporting across 30+ clients",
+    ],
   },
   {
     icon: Workflow,
     title: "Slack-Synced Project Management",
     description: "Kanban system linking project stages with Sheets and ad performance data",
     tech: ["Slack API", "Google Sheets", "n8n"],
-    problem: "Teams using separate tools for project tracking, budget management, and client communication led to misalignment.",
-    solution: "Built n8n automation syncing Slack channels with Google Sheets budget tracker and matter status updates.",
-    results: ["Reduced status update meetings by 60%", "Real-time budget visibility for all stakeholders", "Automated client notifications on milestone completion"],
+    problem:
+      "Teams using separate tools for project tracking, budget management, and client communication led to misalignment.",
+    solution:
+      "Built n8n automation syncing Slack channels with Google Sheets budget tracker and matter status updates.",
+    results: [
+      "Reduced status update meetings by 60%",
+      "Real-time budget visibility for all stakeholders",
+      "Automated client notifications on milestone completion",
+    ],
   },
   {
     icon: CreditCard,
@@ -49,8 +71,13 @@ const projects = [
     description: "Automated store-credit system for Shopify using Supabase backend",
     tech: ["Shopify API", "Supabase", "Lovable.dev"],
     problem: "Manual return processing and store credit issuance created delays and customer frustration.",
-    solution: "Built Shopify app with webhook automation for return detection, credit calculation, and customer notifications via Supabase.",
-    results: ["Reduced return processing time by 85%", "Eliminated manual credit entry errors", "Improved customer satisfaction scores by 40%"],
+    solution:
+      "Built Shopify app with webhook automation for return detection, credit calculation, and customer notifications via Supabase.",
+    results: [
+      "Reduced return processing time by 85%",
+      "Eliminated manual credit entry errors",
+      "Improved customer satisfaction scores by 40%",
+    ],
   },
   {
     icon: Rocket,
@@ -58,8 +85,13 @@ const projects = [
     description: "Uses Google AI Overviews and ChatGPT schema for SEO growth",
     tech: ["SEO", "AI Integration", "Analytics"],
     problem: "Traditional SEO strategies weren't adapting to AI-powered search results and ChatGPT visibility.",
-    solution: "Developed schema markup and content optimization specifically targeting AI Overview features and ChatGPT citations.",
-    results: ["Featured in 15+ AI Overview results", "30% increase in organic visibility", "Generated qualified leads from AI search citations"],
+    solution:
+      "Developed schema markup and content optimization specifically targeting AI Overview features and ChatGPT citations.",
+    results: [
+      "Featured in 15+ AI Overview results",
+      "30% increase in organic visibility",
+      "Generated qualified leads from AI search citations",
+    ],
   },
 ];
 
@@ -85,7 +117,7 @@ const Projects = () => {
           {projects.map((project, index) => {
             const Icon = project.icon;
             const isExpanded = expandedProject === index;
-            
+
             return (
               <motion.div
                 key={index}
@@ -93,7 +125,8 @@ const Projects = () => {
                 className={`${isExpanded ? "md:col-span-2 lg:col-span-3" : ""}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <Card className="p-6 bg-card/50 backdrop-blur border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow group cursor-pointer"
+                <Card
+                  className="p-6 bg-card/50 backdrop-blur border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow group cursor-pointer"
                   onClick={() => toggleProject(index)}
                 >
                   <div className="flex items-start justify-between gap-4">
@@ -111,22 +144,22 @@ const Projects = () => {
                           )}
                         </div>
                       </div>
-                      
+
                       <p className="text-muted-foreground mb-4">{project.description}</p>
-                      
+
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tech.map((tech, i) => (
-                          <span key={i} className="text-xs px-3 py-1 rounded-full bg-secondary/20 text-secondary border border-secondary/30">
+                          <span
+                            key={i}
+                            className="text-xs px-3 py-1 rounded-full bg-secondary/20 text-secondary border border-secondary/30"
+                          >
                             {tech}
                           </span>
                         ))}
                       </div>
                     </div>
-                    
-                    <motion.div
-                      animate={{ rotate: isExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
+
+                    <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
                       <ChevronDown className="w-5 h-5 text-muted-foreground" />
                     </motion.div>
                   </div>
@@ -143,23 +176,29 @@ const Projects = () => {
                         <div className="pt-6 border-t border-border mt-4 grid md:grid-cols-3 gap-6">
                           <div>
                             <h4 className="font-semibold text-destructive mb-2 flex items-center gap-2">
-                              <span className="w-6 h-6 rounded-full bg-destructive/20 flex items-center justify-center text-xs">?</span>
+                              <span className="w-6 h-6 rounded-full bg-destructive/20 flex items-center justify-center text-xs">
+                                ?
+                              </span>
                               Problem
                             </h4>
                             <p className="text-sm text-muted-foreground">{project.problem}</p>
                           </div>
-                          
+
                           <div>
                             <h4 className="font-semibold text-secondary mb-2 flex items-center gap-2">
-                              <span className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center text-xs">→</span>
+                              <span className="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center text-xs">
+                                →
+                              </span>
                               Solution
                             </h4>
                             <p className="text-sm text-muted-foreground">{project.solution}</p>
                           </div>
-                          
+
                           <div>
                             <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-                              <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">✓</span>
+                              <span className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs">
+                                ✓
+                              </span>
                               Results
                             </h4>
                             <ul className="space-y-2">
@@ -172,14 +211,14 @@ const Projects = () => {
                             </ul>
                           </div>
                         </div>
-                        
+
                         {project.isLiveTool && project.liveUrl && (
                           <div className="mt-6 pt-6 border-t border-border">
-                            <Button 
+                            <Button
                               className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-glow"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                window.open(project.liveUrl, '_blank', 'noopener,noreferrer');
+                                window.open(project.liveUrl, "_blank", "noopener,noreferrer");
                               }}
                             >
                               Try Calculator Now <ExternalLink className="w-4 h-4 ml-2" />
