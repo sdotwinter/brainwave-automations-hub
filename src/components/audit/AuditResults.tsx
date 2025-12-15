@@ -15,8 +15,14 @@ import {
   Legend,
 } from "recharts";
 import CountUp from "react-countup";
-import { AlertTriangle, CheckCircle2, Calendar, TrendingUp, Download } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Calendar, TrendingUp, Download, Info } from "lucide-react";
 import { AuditResults as Results, formatCurrency, formatNumber } from "@/lib/auditCalculations";
+import {
+  Tooltip as UITooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface AuditResultsProps {
   results: Results;
@@ -146,7 +152,22 @@ const AuditResults = ({ results, inputs, onRecalculate }: AuditResultsProps) => 
 
             <Card className="p-6 bg-gradient-to-br from-primary/10 to-card border-primary/20">
               <div className="space-y-2">
-                <p className="text-sm text-muted-foreground font-medium">ROI of Fixing This</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-sm text-muted-foreground font-medium">ROI of Fixing This</p>
+                  <TooltipProvider>
+                    <UITooltip>
+                      <TooltipTrigger asChild>
+                        <Info className="w-4 h-4 text-muted-foreground cursor-help" />
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-xs">
+                        <p className="text-sm">
+                          Calculated as: (Recoverable Revenue - Automation Cost) ÷ Automation Cost × 100. 
+                          Assumes 50% of lost revenue is recoverable and automation costs ~12% of recovered revenue.
+                        </p>
+                      </TooltipContent>
+                    </UITooltip>
+                  </TooltipProvider>
+                </div>
                 <p className="text-4xl font-bold text-primary">
                   <CountUp end={results.roiOfFixing} duration={2} suffix="%" />
                 </p>
