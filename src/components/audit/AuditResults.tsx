@@ -269,7 +269,7 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
             Ready to Stop Losing Revenue?
           </h3>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Book a free 30-minute automation audit and I'll show you exactly how to plug these leaks and recover up to{" "}
+            Book a free 30-minute call and I'll show you exactly how to plug these leaks and recover up to{" "}
             <span className="text-primary font-bold">
               {formatCurrency(results.revenueLostMonthly * (results.potentialRecoveryPercent / 100))}/month
             </span>
