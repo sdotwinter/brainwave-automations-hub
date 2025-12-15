@@ -40,10 +40,19 @@ const Hero = () => {
             </a>
           </div>
 
-          <div className="pt-8 flex justify-center items-center">
+          <div className="pt-8 flex flex-col items-center gap-3">
             <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300" asChild>
               <a href="/lead-leaks-audit">Run Free Lead Leaks Audit →</a>
             </Button>
+            <p className="text-sm text-muted-foreground">Takes 2 minutes. Shows real dollar impact.</p>
+            <a 
+              href="https://calendly.com/sean-winter/case-leaks" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground/70 hover:text-primary transition-colors"
+            >
+              Already know your numbers? → Book a call
+            </a>
           </div>
 
           <div className="inline-block pt-8">
