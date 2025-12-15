@@ -290,7 +290,7 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
               <span>Fix These Lead Leaks</span>
             </a>
           </Button>
-          <p className="text-sm text-muted-foreground mt-4">No commitment. No sales pitch. Just actionable insights.</p>
+          <p className="text-sm text-muted-foreground mt-4">A 30-minute intake walkthrough using your numbers.</p>
         </Card>
       </div>
     </section>
