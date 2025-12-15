@@ -20,7 +20,12 @@ const Hero = () => {
             Sean Winter
           </h1>
 
-          <p className="text-2xl md:text-3xl text-muted-foreground font-light">AI Automation Systems & Marketing Strategist</p>
+          <p className="text-2xl md:text-3xl text-foreground font-medium">You're already paying for leads.</p>
+          <p className="text-2xl md:text-3xl text-foreground font-medium">I help law firms stop losing them.</p>
+          
+          <p className="text-lg md:text-xl text-muted-foreground font-light max-w-2xl mx-auto">
+            I build systems that turn more ad clicks into signed cases — without hiring more staff.
+          </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-muted-foreground pt-4">
             <a href="mailto:hireme@seanwinter.pro" className="flex items-center gap-2 hover:text-primary transition-colors">
