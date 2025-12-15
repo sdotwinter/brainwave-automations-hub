@@ -65,7 +65,7 @@ const Hero = () => {
               </a>
             </Button>
             <Button size="lg" variant="outline" className="border-primary/50 hover:bg-primary/10" asChild>
-              <a href="/missed-revenue">Lead Leaks Audit →</a>
+              <a href="/lead-leaks-audit">Lead Leaks Audit →</a>
             </Button>
           </div>
 
