@@ -42,7 +42,7 @@ const Hero = () => {
 
           <div className="pt-8 flex justify-center items-center">
             <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300" asChild>
-              <a href="/lead-leaks-audit">Lead Leaks Audit →</a>
+              <a href="/lead-leaks-audit">Run Free Lead Leaks Audit →</a>
             </Button>
           </div>
 
