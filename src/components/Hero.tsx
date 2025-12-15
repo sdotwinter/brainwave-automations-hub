@@ -60,7 +60,7 @@ const Hero = () => {
               className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300"
               asChild
             >
-              <a href="https://calendly.com/sean-winter/ai-automations-audit" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/sean-winter/case-leaks" target="_blank" rel="noopener noreferrer">
                 Book Free Audit
               </a>
             </Button>
