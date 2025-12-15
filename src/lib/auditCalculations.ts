@@ -34,10 +34,6 @@ export function calculateAuditResults(inputs: AuditInputs): AuditResults {
   const revenueLostMonthly = Math.round(leadsLostMonthly * inputs.averageCustomerValue * (inputs.conversionRate / 100));
   const revenueLostAnnually = revenueLostMonthly * 12;
   
-  // Calculate ROI of fixing (assuming automation costs 10-15% of recovered revenue)
-  const automationCostEstimate = revenueLostAnnually * 0.12;
-  const roiOfFixing = Math.round(((revenueLostAnnually - automationCostEstimate) / automationCostEstimate) * 100);
-  
   // Calculate severity
   const severityScore = calculateSeverityScore(inputs, revenueLostMonthly);
   const severityLevel = getSeverityLevel(severityScore);
@@ -45,6 +41,11 @@ export function calculateAuditResults(inputs: AuditInputs): AuditResults {
   // Use default recovery rate (no longer industry-specific)
   const baseRecoveryRate = 70;
   const potentialRecoveryPercent = inputs.hasCRM ? baseRecoveryRate : baseRecoveryRate - 15;
+  
+  // Calculate ROI of fixing based on recoverable revenue (not assuming 100% recovery)
+  const recoverableRevenue = revenueLostAnnually * (potentialRecoveryPercent / 100);
+  const automationCostEstimate = recoverableRevenue * 0.12;
+  const roiOfFixing = Math.round(((recoverableRevenue - automationCostEstimate) / automationCostEstimate) * 100);
   
   // Generate personalized recommendations
   const recommendations = generateRecommendations(inputs, severityScore);
