@@ -23,7 +23,6 @@ const AuditHero = () => {
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-destructive to-accent bg-clip-text text-transparent leading-tight py-[5px]">
             How Much Revenue Are You Losing to Lead Leaks?
           </h1>
-          <br></br>
           <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-3xl mx-auto">
             Most businesses lose 20-40% of their leads to intake leaks. Discover your lost revenue in under 2 minutes.
           </p>
