@@ -130,7 +130,7 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customerValue">Average Customer Value ($)</Label>
+                  <Label htmlFor="customerValue">Average Case Value ($)</Label>
                   <Input
                     id="customerValue"
                     type="number"
