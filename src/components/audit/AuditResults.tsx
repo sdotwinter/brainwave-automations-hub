@@ -1,16 +1,18 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from "recharts";
+import { Slider } from "@/components/ui/slider";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie } from "recharts";
 import CountUp from "react-countup";
-import { AlertTriangle, CheckCircle2, Calendar, TrendingUp, Download, Info } from "lucide-react";
-import { AuditResults as Results, formatCurrency, formatNumber } from "@/lib/auditCalculations";
+import { AlertTriangle, CheckCircle2, Calendar, TrendingUp, Download, Info, ChevronDown, ChevronUp, Share2, Calculator, BarChart3 } from "lucide-react";
+import { AuditResults as Results, formatCurrency, formatNumber, AuditInputs, industryDefaults } from "@/lib/auditCalculations";
 import { Tooltip as UITooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+
 interface AuditResultsProps {
   results: Results;
-  inputs: {
-    monthlyMarketingSpend: number;
-  };
+  inputs: AuditInputs;
   onRecalculate: () => void;
 }
 const severityColors = {
@@ -30,20 +32,39 @@ const AuditResults = ({
   inputs,
   onRecalculate
 }: AuditResultsProps) => {
+  const [showBreakdown, setShowBreakdown] = useState(false);
+  const [whatIfMissed, setWhatIfMissed] = useState(inputs.followUpMissedPercent);
+  const [whatIfConversion, setWhatIfConversion] = useState(inputs.conversionRate);
+
+  // What-if calculations
+  const whatIfLeadsLost = Math.round((inputs.leadsPerMonth * whatIfMissed) / 100);
+  const whatIfRevenueLost = Math.round(whatIfLeadsLost * inputs.averageCustomerValue * (whatIfConversion / 100));
+
+  // Industry benchmark comparison
+  const industryAvgMissRate = 25; // Benchmark: average follow-up miss rate
+  const industryAvgConversion = 15; // Benchmark: average conversion rate
+  
   const handleDownloadPDF = () => {
-    // Set a descriptive filename by temporarily changing document title
     const originalTitle = document.title;
     const date = new Date().toISOString().split("T")[0];
     document.title = `Revenue-Leakage-Report-${date}`;
-
-    // Trigger print dialog
     window.print();
-
-    // Restore original title after print dialog closes
     setTimeout(() => {
       document.title = originalTitle;
     }, 100);
   };
+
+  const handleShare = (platform: 'twitter' | 'linkedin') => {
+    const text = `I just discovered I'm losing ${formatCurrency(results.revenueLostMonthly)}/month in missed leads. This free audit tool is eye-opening!`;
+    const url = window.location.href;
+    
+    if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    } else {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+    }
+  };
+
   const currentVsOptimized = [{
     name: "Current",
     revenue: inputs.monthlyMarketingSpend * 3,
@@ -151,6 +172,147 @@ const AuditResults = ({
             </Card>
           </div>
 
+          {/* Calculation Breakdown */}
+          <Collapsible open={showBreakdown} onOpenChange={setShowBreakdown}>
+            <Card className="p-6 bg-card/50 backdrop-blur border-border">
+              <CollapsibleTrigger asChild>
+                <Button variant="ghost" className="w-full flex items-center justify-between p-0 h-auto hover:bg-transparent">
+                  <div className="flex items-center gap-3">
+                    <Calculator className="w-5 h-5 text-primary" />
+                    <span className="text-lg font-semibold text-foreground">How We Calculated This</span>
+                  </div>
+                  {showBreakdown ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pt-4">
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between py-2 border-b border-border">
+                    <span className="text-muted-foreground">Leads per month</span>
+                    <span className="font-medium text-foreground">{formatNumber(inputs.leadsPerMonth)}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-border">
+                    <span className="text-muted-foreground">× Follow-up miss rate</span>
+                    <span className="font-medium text-foreground">{inputs.followUpMissedPercent}%</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-border bg-destructive/5 px-2 rounded">
+                    <span className="text-destructive font-medium">= Leads lost monthly</span>
+                    <span className="font-bold text-destructive">{formatNumber(results.leadsLostMonthly)}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-border">
+                    <span className="text-muted-foreground">× Average customer value</span>
+                    <span className="font-medium text-foreground">{formatCurrency(inputs.averageCustomerValue)}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-border">
+                    <span className="text-muted-foreground">× Conversion rate</span>
+                    <span className="font-medium text-foreground">{inputs.conversionRate}%</span>
+                  </div>
+                  <div className="flex justify-between py-2 bg-destructive/10 px-2 rounded">
+                    <span className="text-destructive font-medium">= Monthly revenue lost</span>
+                    <span className="font-bold text-destructive">{formatCurrency(results.revenueLostMonthly)}</span>
+                  </div>
+                </div>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
+
+          {/* Industry Benchmarks */}
+          <Card className="p-6 bg-card/50 backdrop-blur border-border">
+            <div className="flex items-center gap-3 mb-4">
+              <BarChart3 className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-semibold text-foreground">How You Compare</h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Your follow-up miss rate</span>
+                  <span className={inputs.followUpMissedPercent > industryAvgMissRate ? "text-destructive font-medium" : "text-primary font-medium"}>
+                    {inputs.followUpMissedPercent}%
+                  </span>
+                </div>
+                <Progress value={inputs.followUpMissedPercent} className="h-2" />
+                <p className="text-xs text-muted-foreground">
+                  Industry average: {industryAvgMissRate}% — 
+                  {inputs.followUpMissedPercent > industryAvgMissRate 
+                    ? <span className="text-destructive"> {inputs.followUpMissedPercent - industryAvgMissRate}% above average</span>
+                    : <span className="text-primary"> {industryAvgMissRate - inputs.followUpMissedPercent}% below average</span>}
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Your conversion rate</span>
+                  <span className={inputs.conversionRate < industryAvgConversion ? "text-destructive font-medium" : "text-primary font-medium"}>
+                    {inputs.conversionRate}%
+                  </span>
+                </div>
+                <Progress value={inputs.conversionRate} max={30} className="h-2" />
+                <p className="text-xs text-muted-foreground">
+                  Industry average: {industryAvgConversion}% — 
+                  {inputs.conversionRate < industryAvgConversion 
+                    ? <span className="text-destructive"> {industryAvgConversion - inputs.conversionRate}% below average</span>
+                    : <span className="text-primary"> {inputs.conversionRate - industryAvgConversion}% above average</span>}
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          {/* What-If Simulator */}
+          <Card className="p-6 bg-gradient-to-br from-secondary/5 to-card border-secondary/20">
+            <div className="flex items-center gap-3 mb-4">
+              <TrendingUp className="w-5 h-5 text-secondary" />
+              <h3 className="text-lg font-semibold text-foreground">What-If Simulator</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-6">Adjust the sliders to see how improvements would impact your revenue.</p>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <label className="text-sm font-medium text-foreground">Follow-up miss rate</label>
+                    <span className="text-sm font-bold text-primary">{whatIfMissed}%</span>
+                  </div>
+                  <Slider 
+                    value={[whatIfMissed]} 
+                    onValueChange={(v) => setWhatIfMissed(v[0])} 
+                    max={50} 
+                    min={5} 
+                    step={5}
+                    className="w-full"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">Current: {inputs.followUpMissedPercent}%</p>
+                </div>
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <label className="text-sm font-medium text-foreground">Conversion rate</label>
+                    <span className="text-sm font-bold text-primary">{whatIfConversion}%</span>
+                  </div>
+                  <Slider 
+                    value={[whatIfConversion]} 
+                    onValueChange={(v) => setWhatIfConversion(v[0])} 
+                    max={30} 
+                    min={5} 
+                    step={1}
+                    className="w-full"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">Current: {inputs.conversionRate}%</p>
+                </div>
+              </div>
+              
+              <div className="flex flex-col justify-center">
+                <div className="text-center p-4 rounded-lg bg-background/50">
+                  <p className="text-sm text-muted-foreground mb-1">Projected Monthly Loss</p>
+                  <p className={`text-3xl font-bold ${whatIfRevenueLost < results.revenueLostMonthly ? 'text-primary' : 'text-destructive'}`}>
+                    {formatCurrency(whatIfRevenueLost)}
+                  </p>
+                  {whatIfRevenueLost < results.revenueLostMonthly && (
+                    <p className="text-sm text-primary mt-2">
+                      Saving {formatCurrency(results.revenueLostMonthly - whatIfRevenueLost)}/month
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </Card>
+
           {/* Recovery Potential */}
           <Card className="p-6 md:p-8 bg-card/50 backdrop-blur border-border">
             <div className="flex items-center gap-3 mb-6">
@@ -249,6 +411,18 @@ const AuditResults = ({
           </Button>
           <p className="text-sm text-muted-foreground mt-4">A 30-minute intake walkthrough using your numbers.</p>
         </Card>
+
+        {/* Social Sharing */}
+        <div className="flex flex-wrap justify-center gap-3 no-print">
+          <Button variant="outline" size="sm" onClick={() => handleShare('twitter')} className="flex items-center gap-2">
+            <Share2 className="w-4 h-4" />
+            Share on X
+          </Button>
+          <Button variant="outline" size="sm" onClick={() => handleShare('linkedin')} className="flex items-center gap-2">
+            <Share2 className="w-4 h-4" />
+            Share on LinkedIn
+          </Button>
+        </div>
 
         {/* Download PDF Button */}
         <div className="flex flex-col items-center gap-4 no-print">

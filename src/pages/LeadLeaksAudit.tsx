@@ -54,7 +54,7 @@ const LeadLeaksAudit = () => {
         <div id="results">
           <AuditResults 
             results={results} 
-            inputs={{ monthlyMarketingSpend: inputs!.monthlyMarketingSpend }} 
+            inputs={inputs!} 
             onRecalculate={handleRecalculate}
           />
         </div>
