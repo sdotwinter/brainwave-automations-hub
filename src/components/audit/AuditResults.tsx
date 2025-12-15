@@ -78,14 +78,6 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
   return (
     <section className="py-12 px-4 bg-gradient-to-b from-card to-background">
       <div className="container mx-auto max-w-6xl space-y-8">
-        {/* Download PDF Button */}
-        <div className="flex justify-end no-print">
-          <Button onClick={handleDownloadPDF} variant="outline" className="flex items-center gap-2">
-            <Download className="w-4 h-4" />
-            Download Report as PDF
-          </Button>
-        </div>
-
         {/* Report Content - Only this section will be printed */}
         <div id="printable-report">
           {/* Severity Alert */}
@@ -234,14 +226,17 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
             </div>
           </Card>
 
-          {/* Recommendations */}
-          <Card className="p-6 md:p-8 bg-card/50 backdrop-blur border-border">
-            <div className="flex items-center gap-3 mb-6">
-              <CheckCircle2 className="w-6 h-6 text-primary" />
-              <h3 className="text-2xl font-bold text-foreground">Personalized Recommendations</h3>
-            </div>
+        {/* Recommendations */}
+        <Card className="p-6 md:p-8 bg-card/50 backdrop-blur border-border">
+          <div className="flex items-center gap-3 mb-2">
+            <CheckCircle2 className="w-6 h-6 text-primary" />
+            <h3 className="text-2xl font-bold text-foreground">Personalized Recommendations</h3>
+          </div>
+          <p className="text-muted-foreground mb-6 ml-9">
+            These are the same intake fixes I implement for ad-driven law firms to recover missed cases without adding staff.
+          </p>
 
-            <div className="space-y-4">
+          <div className="space-y-4">
               {results.recommendations.map((recommendation, index) => (
                 <div key={index} className="flex gap-4 p-4 rounded-lg bg-primary/5 border border-primary/10">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
@@ -254,14 +249,6 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
           </Card>
         </div>
         {/* End of printable report content */}
-
-        {/* Download PDF Button */}
-        <div className="flex justify-center no-print">
-          <Button onClick={handleDownloadPDF} variant="outline" size="lg" className="flex items-center gap-2">
-            <Download className="w-4 h-4" />
-            Download Report as PDF
-          </Button>
-        </div>
 
         {/* CTA */}
         <Card className="p-8 md:p-12 text-center bg-gradient-to-br from-primary/10 via-card to-secondary/10 border-primary/20 no-print">
@@ -292,6 +279,14 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
           </Button>
           <p className="text-sm text-muted-foreground mt-4">A 30-minute intake walkthrough using your numbers.</p>
         </Card>
+
+        {/* Download PDF Button */}
+        <div className="flex justify-center no-print">
+          <Button onClick={handleDownloadPDF} variant="outline" size="lg" className="flex items-center gap-2">
+            <Download className="w-4 h-4" />
+            Download Report as PDF
+          </Button>
+        </div>
       </div>
     </section>
   );
