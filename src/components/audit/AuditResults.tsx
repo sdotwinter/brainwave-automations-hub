@@ -287,7 +287,7 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
               className="flex items-center justify-center gap-2"
             >
               <Calendar className="w-5 h-5" />
-              <span>See Exactly How to Recover This Revenue</span>
+              <span>Fix These Lead Leaks</span>
             </a>
           </Button>
           <p className="text-sm text-muted-foreground mt-4">No commitment. No sales pitch. Just actionable insights.</p>
