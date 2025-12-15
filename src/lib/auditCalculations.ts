@@ -38,8 +38,8 @@ export function calculateAuditResults(inputs: AuditInputs): AuditResults {
   const severityScore = calculateSeverityScore(inputs, revenueLostMonthly);
   const severityLevel = getSeverityLevel(severityScore);
   
-  // Use default recovery rate (no longer industry-specific)
-  const baseRecoveryRate = 70;
+  // Use default recovery rate - assuming 50% recovery with automations
+  const baseRecoveryRate = 50;
   const potentialRecoveryPercent = inputs.hasCRM ? baseRecoveryRate : baseRecoveryRate - 15;
   
   // Calculate ROI of fixing based on recoverable revenue (not assuming 100% recovery)
