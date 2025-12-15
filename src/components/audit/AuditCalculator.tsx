@@ -258,14 +258,19 @@ const AuditCalculator = ({ onCalculate }: AuditCalculatorProps) => {
               </div>
             </div>
 
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300"
-            >
-              <Calculator className="w-5 h-5 mr-2" />
-              Reveal My Lost Revenue
-            </Button>
+            <div className="flex flex-col items-center gap-2">
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300"
+              >
+                <Calculator className="w-5 h-5 mr-2" />
+                Reveal My Lost Revenue
+              </Button>
+              <p className="text-sm text-muted-foreground">
+                Built from real intake data across ad-driven law firms.
+              </p>
+            </div>
           </form>
         </Card>
       </div>
