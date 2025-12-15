@@ -13,7 +13,7 @@ const AuditHero = () => {
         <div className="max-w-4xl mx-auto text-center space-y-6 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive/10 border border-destructive/20 mb-4">
             <TrendingDown className="w-4 h-4 text-destructive" />
-            <span className="text-sm font-medium text-destructive">Revenue Leakage Calculator</span>
+            <span className="text-sm font-medium text-destructive">Revenue Leakage Audit</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-destructive to-accent bg-clip-text text-transparent leading-tight py-[5px]">How Much Revenue Is Your Firm Losing to Lead Leaks?</h1>
