@@ -247,6 +247,13 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
               ))}
             </div>
           </Card>
+
+          {/* Why Now Nudge */}
+          <div className="text-center py-6">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Every month these leaks stay unaddressed, this revenue is permanently gone. Most firms don't need more leads — they need better capture of the ones they already paid for.
+            </p>
+          </div>
         </div>
         {/* End of printable report content */}
 
@@ -278,15 +285,15 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
             </a>
           </Button>
           <p className="text-sm text-muted-foreground mt-4">A 30-minute intake walkthrough using your numbers.</p>
+          
+          {/* Download PDF Button - directly below CTA */}
+          <div className="mt-6 no-print">
+            <Button onClick={handleDownloadPDF} variant="outline" size="lg" className="flex items-center gap-2 mx-auto">
+              <Download className="w-4 h-4" />
+              Download Report as PDF
+            </Button>
+          </div>
         </Card>
-
-        {/* Download PDF Button */}
-        <div className="flex justify-center no-print">
-          <Button onClick={handleDownloadPDF} variant="outline" size="lg" className="flex items-center gap-2">
-            <Download className="w-4 h-4" />
-            Download Report as PDF
-          </Button>
-        </div>
       </div>
     </section>
   );
