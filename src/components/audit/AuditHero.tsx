@@ -1,12 +1,16 @@
 import { TrendingDown } from "lucide-react";
 const AuditHero = () => {
-  return <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-card to-background">
+  return (
+    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-card to-background">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary rounded-full blur-[120px] animate-glow" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-destructive rounded-full blur-[140px] animate-glow" style={{
-        animationDelay: '1s'
-      }} />
+        <div
+          className="absolute bottom-20 right-20 w-96 h-96 bg-destructive rounded-full blur-[140px] animate-glow"
+          style={{
+            animationDelay: "1s",
+          }}
+        />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 py-12 md:py-20">
@@ -16,10 +20,13 @@ const AuditHero = () => {
             <span className="text-sm font-medium text-destructive">Revenue Leakage Calculator</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-destructive to-accent bg-clip-text text-transparent leading-tight py-[5px]">How Much Revenue Are You Losing to Lead Leaks?</h1>
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-destructive to-accent bg-clip-text text-transparent leading-tight py-[5px]">
+            How Much Revenue Are You Losing to Lead Leaks?
+          </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-3xl mx-auto">Most businesses lose 20-40% of their revenue due to lead leaks.
-Discover your lost revenue in under 2 minutes.</p>
+          <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-3xl mx-auto">
+            Most businesses lose 20-40% of their leads to intake leaks. Discover your lost revenue in under 2 minutes.
+          </p>
 
           {/* Scroll indicator */}
           <div className="pt-8 flex justify-center animate-bounce">
@@ -29,6 +36,7 @@ Discover your lost revenue in under 2 minutes.</p>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default AuditHero;
