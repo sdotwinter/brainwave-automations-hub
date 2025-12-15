@@ -16,7 +16,8 @@ const Contact = () => {
         <Card className="p-8 md:p-12 bg-card/50 backdrop-blur border-border">
           <div className="text-center space-y-8">
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Stop losing revenue to lead leakage. Book a free 30-minute automation audit and discover exactly where your leads are slipping away.
+              Stop losing revenue to lead leakage. Book a free 30-minute automation audit and discover exactly where
+              your leads are slipping away.
             </p>
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 pt-4">
@@ -25,7 +26,12 @@ const Contact = () => {
                 className="bg-gradient-to-r from-primary to-secondary hover:shadow-glow transition-all duration-300 w-full md:w-auto"
                 asChild
               >
-                <a href="https://calendly.com/sean-winter/ai-automations-audit" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <a
+                  href="https://calendly.com/sean-winter/case-leaks"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
                   <Phone className="w-5 h-5" />
                   Book Free Audit
                 </a>
@@ -59,9 +65,7 @@ const Contact = () => {
         </Card>
 
         <div className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground font-mono">
-            © 2025 Sean Winter. Built with automation in mind.
-          </p>
+          <p className="text-sm text-muted-foreground font-mono">© 2025 Sean Winter. Built with automation in mind.</p>
         </div>
       </div>
     </section>
