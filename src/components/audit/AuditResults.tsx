@@ -21,6 +21,7 @@ import { AuditResults as Results, formatCurrency, formatNumber } from "@/lib/aud
 interface AuditResultsProps {
   results: Results;
   inputs: { monthlyMarketingSpend: number };
+  onRecalculate: () => void;
 }
 
 const severityColors = {
@@ -37,7 +38,7 @@ const severityLabels = {
   critical: "Critical Risk",
 };
 
-const AuditResults = ({ results, inputs }: AuditResultsProps) => {
+const AuditResults = ({ results, inputs, onRecalculate }: AuditResultsProps) => {
   const handleDownloadPDF = () => {
     // Set a descriptive filename by temporarily changing document title
     const originalTitle = document.title;
@@ -288,10 +289,18 @@ const AuditResults = ({ results, inputs }: AuditResultsProps) => {
         </Card>
 
         {/* Download PDF Button */}
-        <div className="flex justify-center no-print">
+        <div className="flex flex-col items-center gap-4 no-print">
           <Button onClick={handleDownloadPDF} variant="outline" size="lg" className="flex items-center gap-2">
             <Download className="w-4 h-4" />
             Download Report as PDF
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={onRecalculate}
+            className="border-primary/50 hover:bg-primary/10"
+          >
+            Recalculate with Different Numbers
           </Button>
         </div>
       </div>

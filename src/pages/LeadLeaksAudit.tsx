@@ -52,19 +52,11 @@ const LeadLeaksAudit = () => {
         <AuditCalculator onCalculate={handleCalculate} />
       ) : (
         <div id="results">
-          <AuditResults results={results} inputs={{ monthlyMarketingSpend: inputs!.monthlyMarketingSpend }} />
-          
-          {/* Recalculate Button */}
-          <div className="py-12 px-4 text-center">
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={handleRecalculate}
-              className="border-primary/50 hover:bg-primary/10"
-            >
-              Recalculate with Different Numbers
-            </Button>
-          </div>
+          <AuditResults 
+            results={results} 
+            inputs={{ monthlyMarketingSpend: inputs!.monthlyMarketingSpend }} 
+            onRecalculate={handleRecalculate}
+          />
         </div>
       )}
 
